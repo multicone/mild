@@ -1,0 +1,16 @@
+export const artifacts = [
+  "/assets/a.jpg",
+  "/assets/b.jpg",
+  "/assets/c.jpg",
+  "/assets/d.jpg",
+  "/assets/e.jpg",
+  "/assets/f.jpg",
+  "/assets/g.jpg",
+  "/assets/h.jpg",
+  "/assets/i.jpg",
+  "/assets/j.jpg",
+  "/assets/k.jpg",
+  "/assets/l.jpg",
+  "/assets/m.jpg",
+  "/assets/n.jpg",
+];
