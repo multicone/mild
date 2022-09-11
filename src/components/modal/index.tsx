@@ -1,14 +1,16 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Children, cloneElement, Fragment, useState } from 'react'
+import { classNames } from 'utils'
 
 
 interface IModalProps {
     outsideClickClose?: boolean
+    className?: string
     children: React.ReactNode[] | JSX.Element[]
 
 }
 
-export function Modal({ outsideClickClose = true, children }: IModalProps): JSX.Element {
+export function Modal({ outsideClickClose = true, children, className }: IModalProps): JSX.Element {
     let [isOpen, setIsOpen] = useState<boolean>(false)
 
     function closeModal() {
@@ -50,7 +52,7 @@ export function Modal({ outsideClickClose = true, children }: IModalProps): JSX.
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-dark bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-60 border border-gray-700 p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className={classNames("w-full max-w-md transform overflow-hidden rounded-2xl bg-dark bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-60 border border-gray-700 p-6 text-left align-middle shadow-xl transition-all", className)}>
                                     {cloneElement(children[1] as JSX.Element, { closeModal })}
                                 </Dialog.Panel>
                             </Transition.Child>

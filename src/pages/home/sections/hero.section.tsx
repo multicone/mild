@@ -101,7 +101,7 @@ const SearchBar: FC<SearchProps> = ({ search, searchRef, setSearch, setIsActive,
 
 const ButtonGroup = () => {
     return (
-        <div className="flex gap-4 justify-start w-full z-10">
+        <div className="relative flex gap-4 justify-start w-full z-0">
             <Link to="/explore" className="flex flex-col justify-center items-center gap-3 p-5 py-8 bg-[#8FB1FF] w-full rounded-2xl">
                 <FaWpexplorer className='text-4xl text-white' />
                 <h6 className='text-md font-medium text-white'>Explore</h6>

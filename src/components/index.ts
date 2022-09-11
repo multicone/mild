@@ -6,3 +6,5 @@ export * from "./textInput";
 export * from "./swap";
 export * from "./label";
 export * from "./select";
+export * from "./footer";
+export * from "./navbar";
