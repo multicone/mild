@@ -22,6 +22,7 @@ import { ConnectedOnly, NotConnected } from './connected'
 import { artifacts } from 'utils'
 import { Transition } from '@headlessui/react'
 import { Menu } from 'components/popover'
+import { SearchBar } from 'pages/home/sections'
 export interface INavLink {
     name: string
     url: string
@@ -51,10 +52,10 @@ export const Navbar = () => {
 
     return (
         <div className="w-full bg-shallow-deep/50 sticky top-0 left-0 right-0 filter backdrop-blur-2xl z-30">
-            <Container className="container-custom px-4 py-6 flex items-center justify-between">
-                <div className="">
+            <Container className="container-custom px-4 py-6 flex items-center justify-end">
+                {/* <div className="">
                     <Link to="/" className="text-2xl md:text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-shallow-sky via-shallow-sky to-gray-900">Mild</Link>
-                </div>
+                </div> */}
 
                 <div className="nav-items flex gap-2 items-center">
                     <Link to="/explore" className="text-white text-2xl border focus:scale-95 border-gray-700 p-2 rounded-2xl">

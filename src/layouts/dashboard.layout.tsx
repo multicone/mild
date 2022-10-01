@@ -1,10 +1,9 @@
 import { Footer, Navbar } from 'components'
 import { Outlet } from 'react-router-dom'
 
-export const DefaultLayout = () => {
+export const DashboardLayout = () => {
     return <>
         <Navbar />
         <Outlet />
-        <Footer />
     </>
 }

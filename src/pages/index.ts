@@ -1,4 +1,5 @@
 export * from "./home";
+export * from "./admin";
 export * from "./create";
 export * from "./explore";
 export * from "./user_profile";

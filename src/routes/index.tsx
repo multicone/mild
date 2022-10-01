@@ -1,10 +1,10 @@
-import { AssetDetails, CollectionProfile, Create, Explore, Home, UserProfle } from "pages";
-import { Default } from "layouts";
+import { Admin, AssetDetails, CollectionProfile, Create, Explore, Home, UserProfle } from "pages";
+import { DashboardLayout, DefaultLayout } from "layouts";
 
 export const routes = [
     {
         path: '/',
-        element: <Default />,
+        element: <DefaultLayout />,
         children: [
             {
                 path: '',
@@ -33,11 +33,15 @@ export const routes = [
                 path: 'assets/:chain/:address',
                 element: <AssetDetails />,
             },
+
         ]
     },
-
     {
+        path: 'admin/*',
+        element: <Admin />,
+    }
+    , {
         path: '*',
         element: <div className="flex items-center h-screen w-screen justify-center text-4xl text-center text-gray-600 font-bold">Not found | 404</div>,
-    }
+    },
 ];

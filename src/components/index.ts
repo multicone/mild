@@ -8,3 +8,4 @@ export * from "./label";
 export * from "./select";
 export * from "./footer";
 export * from "./navbar";
+export * from "./navlink";

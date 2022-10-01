@@ -79,7 +79,7 @@ interface SearchProps {
     setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
     handleKeyPress: React.KeyboardEventHandler<HTMLInputElement>;
 }
-const SearchBar: FC<SearchProps> = ({ search, searchRef, setSearch, setIsActive, handleKeyPress }) => {
+export const SearchBar: FC<SearchProps> = ({ search, searchRef, setSearch, setIsActive, handleKeyPress }) => {
     return (
         <div className="flex items-center justify-start bg-[#222A39] rounded-2xl p-3 gap-1 w-full">
             <Link to={search && `/search?q=${search}`}><BiSearch className='text-gray-400 text-xl' /></Link>
