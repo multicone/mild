@@ -11,7 +11,7 @@ import { IoMdSunny, IoIosArrowDown, IoMdNotifications } from 'react-icons/io'
 import { HiOutlineMenuAlt4 } from 'react-icons/hi'
 import { VscAccount } from 'react-icons/vsc'
 import { FiCopy, FiPlus } from 'react-icons/fi'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { BiPowerOff } from 'react-icons/bi'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { Container, Modal, Select } from 'components'
@@ -19,7 +19,7 @@ import { CustomConnectButton } from './button'
 import { AccountModal } from './accountModal'
 import { RiMenu5Line } from 'react-icons/ri'
 import { ConnectedOnly, NotConnected } from './connected'
-import { artifacts } from 'utils'
+import { artifacts, classNames } from 'utils'
 import { Transition } from '@headlessui/react'
 import { Menu } from 'components/popover'
 import { SearchBar } from 'pages/home/sections'
@@ -42,6 +42,7 @@ export const navLinks: INavLink[] = [
 export const Navbar = () => {
     const [signedIn, setSignedIn] = useState(true)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const location = useLocation()
 
     const showMobileMenu = () => {
         setMobileMenuOpen(true)
@@ -49,15 +50,19 @@ export const Navbar = () => {
     const hideMobileMenu = () => {
         setMobileMenuOpen(false)
     }
+    console.log(location.pathname.includes('admin'))
+
 
     return (
-        <div className="w-full bg-shallow-deep/50 sticky top-0 left-0 right-0 filter backdrop-blur-2xl z-30">
-            <Container className="container-custom px-4 py-6 flex items-center justify-end">
-                {/* <div className="">
-                    <Link to="/" className="text-2xl md:text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-shallow-sky via-shallow-sky to-gray-900">Mild</Link>
-                </div> */}
+        <div className="w-full bg-shallow-deep/50 sticky top-0 left-0 right-0 filter backdrop-blur-2xl z-10">
+            <Container className={classNames(location.pathname.includes('admin') ? 'justify-end' : 'justify-between', "container-custom px-4 py-6 flex items-center")}>
+                {location.pathname.includes('admin') ? (<></>) : (
+                    <div className="justify-self-start">
+                        <Link to="/" className="text-2xl md:text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-shallow-sky via-shallow-sky to-gray-900">Mild</Link>
+                    </div>)
+                }
 
-                <div className="nav-items flex gap-2 items-center">
+                <div className="nav-items flex gap-2 items-center justify-self-end">
                     <Link to="/explore" className="text-white text-2xl border focus:scale-95 border-gray-700 p-2 rounded-2xl">
                         <FaWpexplorer />
                     </Link>
