@@ -1,0 +1,6 @@
+.center {
+  @apply flex items-center justify-center;
+}
+.apart {
+  @apply flex items-center justify-between;
+}

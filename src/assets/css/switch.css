@@ -1,0 +1,18 @@
+.toggle-bg:after {
+  content: "";
+  @apply absolute top-0.5 left-0.5 bg-white border border-gray-300 rounded-full h-4 w-4 transition shadow-sm;
+}
+
+input:checked + .toggle-bg:after {
+  transform: translateX(120%);
+  @apply border-white;
+}
+
+input:checked + .toggle-bg {
+  @apply border-primary bg-primary;
+}
+
+.tooltip::after {
+  content: "";
+  @apply w-5 h-5;
+}

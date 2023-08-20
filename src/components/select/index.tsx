@@ -1,30 +1,68 @@
-import { Menu } from "@headlessui/react"
-import { FaChevronDown } from "react-icons/fa"
-import { classNames } from "utils"
+import { Fragment, useState } from 'react'
+import { Listbox, Transition } from '@headlessui/react'
+import { BsCheck } from 'react-icons/bs'
+import { BsChevronExpand } from 'react-icons/bs'
 
-interface ISelectProps {
-    selected: string
-    items: string[]
-    controlClassName?: string
-    boxClassName?: string
-    setSelected: (value: string) => void
-    icon?: JSX.Element
-    showSelected?: boolean
+type Item = {
+    name: string
+    [key: string]: any
 }
 
-export function Select({ items, selected = items[0], showSelected = true, setSelected, icon = <FaChevronDown className="text-sm" />, controlClassName, boxClassName }: ISelectProps) {
+interface SelectProps {
+    selected: Item
+    setSelected: (item: Item) => void
+    data: Item[]
+}
+
+export function Select({ selected, setSelected, data }: SelectProps) {
     return (
-        <Menu as="div" className="relative md:inline-block text-left z-10 hidden">
-            <Menu.Button className={classNames(`flex items-center gap-2 text-white border border-gray-700 capitalize font-medium px-4 py-2 rounded-2xl cursor-pointer transition-all duration-300`, controlClassName)}>
-                {showSelected && selected} {icon}
-            </Menu.Button>
-            <Menu.Items className="absolute right-0 w-56 mt-1 origin-top-right divide-y divide-gray-500 divide-opacity-10  bg-dark bg-clip-padding backdrop-filter backdrop-blur-2xl rounded-2xl bg-opacity-60 border border-gray-700 p-0 text-left align-middle shadow-xl transition-all overflow-hidden">
-                {items?.map(x => (
-                    <Menu.Item onClick={() => setSelected(x)} as="div" className="cursor-pointer py-4 px-4 capitalize hover:bg-shallow-dark text-sm font-medium text-white">
-                        <div>{x}</div>
-                    </Menu.Item>
-                ))}
-            </Menu.Items>
-        </Menu>
+        <Listbox as={Fragment} value={selected} onChange={setSelected}>
+            <div className="relative mt-1">
+                <Listbox.Button className="text-left form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400  dark:border-navy-450 dark:hover:border-navy-400 ">
+                    <span className="block truncate">{selected.name}</span>
+                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                        <BsChevronExpand
+                            className="h-5 w-5 text-gray-400"
+                            aria-hidden="true"
+                        />
+                    </span>
+                </Listbox.Button>
+                <Transition
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                >
+                    <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-slate-100 dark:bg-navy-500 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        {data?.map((item, itemIdx) => (
+                            <Listbox.Option
+                                key={itemIdx}
+                                className={({ active }) =>
+                                    `relative cursor-pointer select-none py-2 pl-10 pr-4 text-sm ${active ? 'bg-slate-200 dark:bg-slate-100 dark:text-slate-900' : 'dark:text-slate-200'
+                                    }`
+                                }
+                                value={item}
+                            >
+                                {({ selected }) => (
+                                    <>
+                                        <span
+                                            className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                                                }`}
+                                        >
+                                            {item.name}
+                                        </span>
+                                        {selected ? (
+                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-cyan-200">
+                                                <BsCheck className="h-5 w-5" aria-hidden="true" />
+                                            </span>
+                                        ) : null}
+                                    </>
+                                )}
+                            </Listbox.Option>
+                        ))}
+                    </Listbox.Options>
+                </Transition>
+            </div>
+        </Listbox>
     )
 }
